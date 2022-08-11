@@ -11,11 +11,11 @@ macOS swift封装NSAppleScript、Process脚本
 ```swift
 // 执行脚本
 let ret = Script.git()
-								.git_command(options: [.version])
+				.git_command(options: [.version])
                 .execute()
 guard let value = ret.success as? String else { 
   	print("executed failed: \(ret.failure)")
-		return 
+	return 
 }
 print("executed succeed: \(value)")
 
@@ -25,13 +25,13 @@ Executor.shared.interrupt()
 
 // 监听Process的打印
 Executor.shared
-				.streamResultSubject?
-				.sink { ret in
-            // success is from stanardOutput
-            // failure is from stanardError
-            print("[Stream] \(ret)")
-        }
-        .store(in: &cancellable)
+	.streamResultSubject?
+	.sink { ret in
+		// success is from stanardOutput
+		// failure is from stanardError
+		print("[Stream] \(ret)")
+	}
+	.store(in: &cancellable)
 ```
 
 
@@ -41,7 +41,7 @@ Executor.shared
 ```swift
 // 新增新的脚本路径
 extension ScriptPathCacher {
-		static let mdfind = Command(rawValue: "mdfind")
+	static let mdfind = Command(rawValue: "mdfind")
 }
 
 let cacher = ScriptPathCacher.shared
@@ -50,27 +50,28 @@ cacher[.mdfind] = cacher.which(.mdfind)
 
 // 新增新的脚本
 extension Script {
-  	class func mdfind() -> Script {
-				Script(command: .mdfind, type: .apple(isAsAdministrator: false))
-	  }
+	class func mdfind() -> Script {
+		Script(command: .mdfind, type: .apple(isAsAdministrator: false))
+	}
   
   	func mdfind_command(_ query: String) -> Self {
       	if arguments == nil { arguments = [] }
       	
       	arugments.append("'\(query)'")
       
-    		return self
-	  }
+		return self
+	}
 }
 
 // 执行
 let ret = Script.mdfind()
-								.mdfind_command("com_apple_xcode_dsym_uuids == ABDEADFAFASD234ALKSJDFZ")
-								.execute()
+				.mdfind_command("com_apple_xcode_dsym_uuids == ABDEADFAFASD234ALKSJDFZ")
+				.execute()
 guard let value = ret.success as? String else { 
-  	print("executed failed: \(ret.failure)")
-		return 
+	print("executed failed: \(ret.failure)")
+	return 
 }
+
 print("executed succeed: \(value.components(separatedBy: "/r"))")
 ```
 
