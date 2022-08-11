@@ -91,7 +91,7 @@ extension ProcessExecutor {
         
         process.executableURL = URL(fileURLWithPath: script.path!)
         process.arguments = script.arguments ?? []
-        // 未设置环境时不能设置env，不然其内部无法继承内部的env，从而可能导致xcodebuild archive异常
+        // 未设置环境时不能设置env为nil，不然其无法继承内部的env，从而可能导致xcodebuild archive异常
         if let env = script.type.environment { process.environment = env }
         
         process.sc_ignoreOutput = ignoreOutput

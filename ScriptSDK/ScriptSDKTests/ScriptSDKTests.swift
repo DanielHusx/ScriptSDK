@@ -138,16 +138,43 @@ extension ScriptSDKTests {
         }
         
     }
+    
+    func testRuby() {
+        let xcodeprojFile = ""
+        let targetName = ""
+        
+        let ret = Script.ruby()
+                        .ruby_setBuildSettings(xcodeproj: xcodeprojFile,
+                                               targetName: targetName,
+                                               configuration: .debug,
+                                               buildSettings: [.PRODUCT_BUNDLE_IDENTIFIER: "test.bundle.identifier"])
+                        .execute()
+        guard ret.isSuccess else {
+            XCTFail("\(ret)")
+            return
+        }
+    }
 }
 
 // MARK: - 多脚本测试
 extension ScriptSDKTests {
     func testMultiGit() {
-        measure {
-            for _ in 0..<50 {
-                testGit()
+        let exception = expectation(description: "multiGit")
+        let group = DispatchGroup()
+        let queue = DispatchQueue(label: "multiGitQueue", qos: .background, attributes: .concurrent)
+        
+        for _ in 0..<50 {
+            queue.async(group: group) { [weak self] in
+                self?.testGit()
             }
         }
+        
+        group.notify(queue: queue) {
+            exception.fulfill()
+        }
+        
+        let ret = XCTWaiter(delegate: self).wait(for: [exception], timeout: 3)
+        if ret == .timedOut { print("超时执行git") }
     }
     
     func testMultiSh() {
@@ -156,17 +183,30 @@ extension ScriptSDKTests {
             return
         }
         
-        measure {
-            for i in 0..<50 {
+        let exception = expectation(description: "multiGit")
+        let group = DispatchGroup()
+        let queue = DispatchQueue(label: "multiGitQueue", qos: .background, attributes: .concurrent)
+        
+        for i in 0..<50 {
+            queue.async(group: group) {
                 let ret = Script.sh()
                                 .sh_command(script, args: ["\(i)"])
                                 .execute()
-                guard ret.isSuccess else {
+                guard let value = ret.success as? String else {
                     XCTFail("\(ret)")
                     return
                 }
+                print("ret [\(i)] - \(value)")
             }
         }
+        
+        group.notify(queue: queue) {
+            exception.fulfill()
+        }
+        
+        let ret = XCTWaiter(delegate: self).wait(for: [exception], timeout: 4)
+        if ret == .timedOut { print("超时执行git") }
+        
     }
 }
 
@@ -178,17 +218,15 @@ extension ScriptSDKTests {
             XCTFail("找不到测试脚本test.sh")
             return
         }
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+            print("终止")
+            Executor.shared.interrupt()
+        }
         
         let ret = Script.sh()
                         .sh_command(script, args: ["interrupt"])
                         .execute()
-        DispatchQueue.global().asyncAfter(deadline: .now()+1) {
-            Executor.shared.interrupt()
-        }
         
-        guard ret.isSuccess else {
-            XCTFail("\(ret)")
-            return
-        }
+        XCTAssertTrue(ret.isFailure, "中断必然失败")
     }
 }

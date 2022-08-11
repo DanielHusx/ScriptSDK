@@ -39,7 +39,7 @@ extension Script {
     /// /bin/sh命令
     public class func sh() -> Script {
         Script(command: .sh,
-               type: .process(isIgnoreOutput: true, environment: nil, input: nil))
+               type: .process(isIgnoreOutput: false, environment: nil, input: nil))
     }
     
     /// 构建sh命令

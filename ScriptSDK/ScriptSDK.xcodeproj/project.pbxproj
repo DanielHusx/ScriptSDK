@@ -56,6 +56,7 @@
 		4B39A8F628A4FE3100648B48 /* Dwarfdump.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B39A8F428A4FE3100648B48 /* Dwarfdump.swift */; };
 		4B39A8F828A4FF5500648B48 /* EmptyIOS in Resources */ = {isa = PBXBuildFile; fileRef = 4B39A8F728A4FF5500648B48 /* EmptyIOS */; };
 		4B39A8FA28A5000200648B48 /* test.sh in Resources */ = {isa = PBXBuildFile; fileRef = 4B39A8F928A5000200648B48 /* test.sh */; };
+		65279D4B28A51FB90019CF41 /* PBXProjScript.rb in Resources */ = {isa = PBXBuildFile; fileRef = 4B39A8DA28A4F43E00648B48 /* PBXProjScript.rb */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -323,6 +324,7 @@
 			files = (
 				4B39A8FA28A5000200648B48 /* test.sh in Resources */,
 				4B39A8F828A4FF5500648B48 /* EmptyIOS in Resources */,
+				65279D4B28A51FB90019CF41 /* PBXProjScript.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

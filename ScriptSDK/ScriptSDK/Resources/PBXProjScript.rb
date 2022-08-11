@@ -8,7 +8,7 @@ require 'json'
 
 # 参数校验
 def check_valid (path_, configuration_, json_string_)
-    if path_ == nil || configuration_ == nil
+    if path_ == nil || configuration_ == nil || path_.length == 0 || configuration_.length == 0
         raise "Missing require parameters: project directory, configuration name"
     end
     # 未提供设置buildSettings参数，默认为设置成功

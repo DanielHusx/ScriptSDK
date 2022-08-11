@@ -77,5 +77,5 @@ public class Executor {
         handler.interrupt()
     }
     
-    internal init() {}
+    private init() {}
 }
