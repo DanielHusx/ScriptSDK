@@ -23,6 +23,7 @@ print("executed succeed: \(value)")
 // 中断脚本（只能中断Process脚本）
 Executor.shared.interrupt()
 
+
 // 监听Process的打印
 Executor.shared
 	.streamResultSubject?
