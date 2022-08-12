@@ -51,7 +51,7 @@ public class ScriptPathCacher {
 
 extension ScriptPathCacher {
     /// 可支持命令类型
-    public struct Command: Hashable {
+    public struct Command: Hashable, CaseIterable {
         public let rawValue: String
         public init(rawValue: String) { self.rawValue = rawValue }
         
@@ -85,57 +85,76 @@ extension ScriptPathCacher {
         
         // 内置
         public static let symbolicatecrash = Command(rawValue: "symbolicatecrash")
+        
+        public static var allCases: [ScriptPathCacher.Command] = [
+            .xcodebuild,
+            .security,
+            .lipo,
+            .codesign,
+            .ruby,
+            .git,
+            .otool,
+            .pod,
+            .xcrun,
+            .rm,
+            .unzip,
+            .chmod,
+            .atos,
+            .mdfind,
+            .dwarfdump,
+            .diff,
+            .plutil,
+            .openssl,
+            .find,
+            .sh,
+            .which,
+            .eval,
+            .plistBuddy,
+            .echo,
+            .grep,
+            .symbolicatecrash
+        ]
     }
     
 }
 
 extension ScriptPathCacher {
     private func prepare() {
-        paths[.which] = "/usr/bin/which"
         paths[.eval] = "eval `/usr/libexec/path_helper -s`;"
-        paths[.plistBuddy] = "/usr/libexec/PlistBuddy"
-        /*
-         echo原脚本路径：/bin/echo
-         但是存在打印不会自动转码的问题，所以直接用echo
-         这样也同样限制了此命令只能用AppleScript调用
-         */
-        paths[.echo] = "echo"
-        paths[.grep] = "/usr/bin/grep"
         paths[.symbolicatecrash] = Bundle(for: ScriptPathCacher.self).path(forResource: "symbolicatecrash", ofType: nil)
         
-        scripts[.git] = which(.git)
-        scripts[.xcodebuild] = which(.xcodebuild)
-        scripts[.otool] = which(.otool)
-        scripts[.security] = which(.security)
-        scripts[.lipo] = which(.lipo)
-        scripts[.codesign] = which(.codesign)
-        scripts[.xcrun] = which(.xcrun)
-        scripts[.rm] = which(.rm)
-        scripts[.unzip] = which(.unzip)
-        scripts[.chmod] = which(.chmod)
-        scripts[.mdfind] = which(.mdfind)
-        scripts[.dwarfdump] = which(.dwarfdump)
-        scripts[.atos] = which(.atos)
-        scripts[.diff] = which(.diff)
-        scripts[.plutil] = which(.plutil)
-        scripts[.openssl] = which(.openssl)
-        scripts[.find] = which(.find)
-        scripts[.sh] = which(.sh)
-        
+        // whereis -b -q pod在终端就能得到正确反馈，在此处不论用AppleScript还是Process都反馈为空就很神奇～
+        // 不直接用which是因为可能环境存在多个ruby时读取的路径会乱，而默认期望的是/usr/local/bin/pod，目前找到的方案就是用eval相对比较稳定
         scripts[.pod] = eval(.pod)
+        // ruby虽然用whereis可以得到，但也存在可能多个ruby乱的情况，eval稳定点
         scripts[.ruby] = eval(.ruby)
+        
+        for cmd in Command.allCases {
+            guard paths[cmd] == nil, scripts[cmd] == nil else { continue }
+            
+            /*
+             whereis似乎比which相对更管用
+             只不过某些路径得到的不太一样
+             比如:
+             which git => /Applications/Xcode.app/Contents/Developer/usr/bin/git
+             whereis -b -q git => /usr/bin/git
+             
+             atos, xcodebuild 结果同上类似
+             */
+            scripts[cmd] = whereis(cmd)
+        }
     }
     
     private func setup() {
         for (c, s) in scripts {
             guard let path = execute(s) else { continue }
             
-            paths[c] = path.trimmingCharacters(in: .whitespacesAndNewlines)
+            paths[c] = path
         }
     }
     
     private func execute(_ script: Script) -> String? {
-        let ret = Executor.shared.execute(script)
+        let ret = script.execute()
         guard let path = ret.success as? String, !path.isEmpty else { return nil }
         
         return path.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -181,5 +200,9 @@ extension ScriptPathCacher {
                     command.rawValue
                ],
                type: .apple(isAsAdministrator: false))
+    }
+    /// whereis查找命令
+    public func whereis(_ command: Command) -> Script {
+        Script.whereis().whereis_command(command.rawValue, options: [.binary, .quiet])
     }
 }

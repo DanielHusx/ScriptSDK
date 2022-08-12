@@ -56,6 +56,9 @@
 		4B39A8F628A4FE3100648B48 /* Dwarfdump.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B39A8F428A4FE3100648B48 /* Dwarfdump.swift */; };
 		4B39A8F828A4FF5500648B48 /* EmptyIOS in Resources */ = {isa = PBXBuildFile; fileRef = 4B39A8F728A4FF5500648B48 /* EmptyIOS */; };
 		4B39A8FA28A5000200648B48 /* test.sh in Resources */ = {isa = PBXBuildFile; fileRef = 4B39A8F928A5000200648B48 /* test.sh */; };
+		4B39A8FC28A5F62A00648B48 /* Whereis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B39A8FB28A5F62A00648B48 /* Whereis.swift */; };
+		4B39A8FD28A5F62A00648B48 /* Whereis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B39A8FB28A5F62A00648B48 /* Whereis.swift */; };
+		4B39A8FE28A5FF5000648B48 /* symbolicatecrash in Resources */ = {isa = PBXBuildFile; fileRef = 4B39A8DB28A4F43E00648B48 /* symbolicatecrash */; };
 		65279D4B28A51FB90019CF41 /* PBXProjScript.rb in Resources */ = {isa = PBXBuildFile; fileRef = 4B39A8DA28A4F43E00648B48 /* PBXProjScript.rb */; };
 /* End PBXBuildFile section */
 
@@ -100,6 +103,7 @@
 		4B39A8F428A4FE3100648B48 /* Dwarfdump.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dwarfdump.swift; sourceTree = "<group>"; };
 		4B39A8F728A4FF5500648B48 /* EmptyIOS */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = EmptyIOS; sourceTree = "<group>"; };
 		4B39A8F928A5000200648B48 /* test.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = test.sh; sourceTree = "<group>"; };
+		4B39A8FB28A5F62A00648B48 /* Whereis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Whereis.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +191,7 @@
 				4B39A8D128A4F25300648B48 /* Find.swift */,
 				4B39A8CD28A4F1FF00648B48 /* Sh.swift */,
 				4B39A8F428A4FE3100648B48 /* Dwarfdump.swift */,
+				4B39A8FB28A5F62A00648B48 /* Whereis.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -323,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B39A8FA28A5000200648B48 /* test.sh in Resources */,
+				4B39A8FE28A5FF5000648B48 /* symbolicatecrash in Resources */,
 				4B39A8F828A4FF5500648B48 /* EmptyIOS in Resources */,
 				65279D4B28A51FB90019CF41 /* PBXProjScript.rb in Resources */,
 			);
@@ -355,6 +361,7 @@
 				4B39A8CC28A4F19C00648B48 /* Git.swift in Sources */,
 				4B39A8F528A4FE3100648B48 /* Dwarfdump.swift in Sources */,
 				4B39A8EA28A4F63300648B48 /* Xcodebuild.swift in Sources */,
+				4B39A8FC28A5F62A00648B48 /* Whereis.swift in Sources */,
 				4B39A8C828A4EF8D00648B48 /* ProcessHandler.swift in Sources */,
 				4B39A8ED28A4F77E00648B48 /* Security.swift in Sources */,
 			);
@@ -385,6 +392,7 @@
 				4B39A8F328A4FB9000648B48 /* UnknownHandler.swift in Sources */,
 				4B39A8D328A4F25A00648B48 /* Find.swift in Sources */,
 				4B39A8BB28A4EEBF00648B48 /* ScriptPathCacher.swift in Sources */,
+				4B39A8FD28A5F62A00648B48 /* Whereis.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

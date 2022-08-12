@@ -59,21 +59,30 @@ extension ScriptSDKTests {
     }
     
     func testPathCache() {
+        common(cmd: .xcodebuild, aspect: "/usr/bin/xcodebuild")
         common(cmd: .security, aspect: "/usr/bin/security")
         common(cmd: .lipo, aspect: "/usr/bin/lipo")
         common(cmd: .codesign, aspect: "/usr/bin/codesign")
         common(cmd: .ruby, aspect: "/usr/bin/ruby")
-        common(cmd: .git, aspect: "/Applications/Xcode.app/Contents/Developer/usr/bin/git")
+        common(cmd: .git, aspect: "/usr/bin/git")
         common(cmd: .otool, aspect: "/usr/bin/otool")
         common(cmd: .pod, aspect: "/usr/local/bin/pod")
         common(cmd: .xcrun, aspect: "/usr/bin/xcrun")
+        common(cmd: .rm, aspect: "/bin/rm")
         common(cmd: .unzip, aspect: "/usr/bin/unzip")
         common(cmd: .chmod, aspect: "/bin/chmod")
-        common(cmd: .atos, aspect: "/Applications/Xcode.app/Contents/Developer/usr/bin/atos")
+        common(cmd: .atos, aspect: "/usr/bin/atos")
         common(cmd: .mdfind, aspect: "/usr/bin/mdfind")
         common(cmd: .dwarfdump, aspect: "/usr/bin/dwarfdump")
-        common(cmd: .xcodebuild, aspect: "/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild")
-        common(cmd: .rm, aspect: "/bin/rm")
+        common(cmd: .diff, aspect: "/usr/bin/diff")
+        common(cmd: .plutil, aspect: "/usr/bin/plutil")
+        common(cmd: .openssl, aspect: "/usr/bin/openssl")
+        common(cmd: .find, aspect: "/usr/bin/find")
+        common(cmd: .sh, aspect: "/bin/sh")
+        common(cmd: .which, aspect: "/usr/bin/which")
+        common(cmd: .plistBuddy, aspect: "/usr/libexec/PlistBuddy")
+        common(cmd: .echo, aspect: "/bin/echo")
+        common(cmd: .grep, aspect: "/usr/bin/grep")
     }
 }
 
