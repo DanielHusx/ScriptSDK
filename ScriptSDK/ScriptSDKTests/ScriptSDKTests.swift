@@ -34,7 +34,7 @@ class ScriptSDKTests: XCTestCase {
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
-        Executor.shared.streamResultSubject?.sink(receiveValue: { output in
+        Script.streamResultSubject()?.sink(receiveValue: { output in
             print("[Stream] \(output)")
         })
         .store(in: &cancellable)
@@ -149,6 +149,7 @@ extension ScriptSDKTests {
     }
     
     func testRuby() {
+        // TODO: 请填写有效路径与名称！
         let xcodeprojFile = ""
         let targetName = ""
         
@@ -229,7 +230,7 @@ extension ScriptSDKTests {
         }
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
             print("终止")
-            Executor.shared.interrupt()
+            Script.interrupt()
         }
         
         let ret = Script.sh()

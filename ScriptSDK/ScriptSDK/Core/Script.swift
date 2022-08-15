@@ -33,6 +33,7 @@
     
 
 import Foundation
+import Combine
 
 /// 脚本模型
 open class Script {
@@ -83,7 +84,17 @@ open class Script {
 extension Script {
     /// 脚本执行
     public func execute() -> ScriptResultAnyOption {
-        return Executor.shared.execute(self)
+        Executor.shared.execute(self)
+    }
+    
+    /// 中断所有脚本执行
+    public class func interrupt() {
+        Executor.shared.interrupt()
+    }
+    
+    /// process流输出，当isIgnoreOutput为true时，此subject方能生效
+    public class func streamResultSubject() -> PassthroughSubject<ScriptResultAnyOption, Never>? {
+        Executor.shared.streamResultSubject
     }
 }
 

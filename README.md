@@ -21,18 +21,16 @@ print("executed succeed: \(value)")
 
 
 // 中断脚本（只能中断Process脚本）
-Executor.shared.interrupt()
+Script.interrupt()
 
 
 // 监听Process的打印
-Executor.shared
-	.streamResultSubject?
-	.sink { ret in
-            // success is from stanardOutput
-            // failure is from stanardError
-            print("[Stream] \(ret)")
-	}
-	.store(in: &cancellable)
+Script.streamResultSubject()?.sink { ret in
+	// success is from stanardOutput
+	// failure is from stanardError
+	print("[Stream] \(ret)")
+}
+.store(in: &cancellable)
 ```
 
 

@@ -36,9 +36,9 @@ import Foundation
 import Combine
 
 /// 脚本执行者
-public class Executor {
+class Executor {
     /// 单例对象
-    public static let shared = Executor()
+    static let shared = Executor()
     /// 执行处理者
     private lazy var handler: ExecutorHandler = {
         let root = RootHandler()
@@ -54,7 +54,7 @@ public class Executor {
     }()
     
     /// process流输出，当isIgnoreOutput为true时，此subject方能生效
-    public lazy var streamResultSubject: PassthroughSubject<ScriptResultAnyOption, Never>? = {
+    lazy var streamResultSubject: PassthroughSubject<ScriptResultAnyOption, Never>? = {
         var executor: ExecutorHandler? = handler
         while let next = executor?.next {
             guard let process = next as? ProcessExecutor else {
@@ -68,12 +68,12 @@ public class Executor {
     }()
     
     /// 执行脚本
-    public func execute(_ script: Script) -> ScriptResultAnyOption {
+    func execute(_ script: Script) -> ScriptResultAnyOption {
         handler.execute(script)
     }
     
     /// 中断脚本
-    public func interrupt() {
+    func interrupt() {
         handler.interrupt()
     }
     
