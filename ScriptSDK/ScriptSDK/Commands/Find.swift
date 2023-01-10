@@ -58,7 +58,7 @@ extension Script {
     
     /// 构建find基本命令
     public class func find() -> Script {
-        Script(command: .find,
+        Script(.find,
                type: .apple(isAsAdministrator: false))
     }
     

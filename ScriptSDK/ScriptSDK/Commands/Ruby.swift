@@ -73,7 +73,7 @@ extension Script {
     /// ruby构建基本命令
     /// - Returns: Script
     public class func ruby() -> Script {
-        return Script(command: .ruby,
+        return Script(.ruby,
                       type: .process(isIgnoreOutput: false, environment: ["LANG": "en_US.UTF-8"], input: nil))
     }
     

@@ -99,7 +99,7 @@ extension Script {
     /// pod基础脚本命令
     /// - Returns: Script
     public class func pod() -> Script {
-        Script(command: .pod,
+        Script(.pod,
                type: .apple(isAsAdministrator: false))
     }
     

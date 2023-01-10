@@ -79,6 +79,19 @@ open class Script {
             self.type = typt_
         }
     }
+    
+    /// 新的命令基于缓存脚本路径进行初始化
+    /// - Parameters:
+    ///   - command: 命令对象封装获取方式与类型
+    ///   - arguments: 参数集
+    ///   - type: 脚本类型
+    public init(_ command: Script.Command,
+                arguments: [String]? = nil,
+                type: ScriptType = .unknown) {
+        self.path = command.path
+        self.arguments = arguments
+        self.type = type
+    }
 }
 
 extension Script {

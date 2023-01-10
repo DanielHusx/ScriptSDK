@@ -137,7 +137,8 @@ extension Script {
     /// gitj基础脚本命令对象
     /// - Returns: Script
     public class func git(_ type: ScriptType = .apple(isAsAdministrator: false)) -> Script {
-        Script(command: .git, type: type)
+        Script(.git,
+               type: type)
     }
     
     /// git构建通用命令

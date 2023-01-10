@@ -52,7 +52,7 @@ extension Script {
     
     /// 构建whereis基本命令
     public class func whereis() -> Script {
-        Script(path: "/usr/bin/whereis",
+        Script(.whereis,
                type: .apple(isAsAdministrator: false))
     }
     

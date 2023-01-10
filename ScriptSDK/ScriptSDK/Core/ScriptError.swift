@@ -88,4 +88,9 @@ extension Result {
         return error
     }
     
+    /// 成功时的结果反馈为字符串
+    public var string: String? {
+        guard isSuccess, let ret = success as? String else { return nil }
+        return ret
+    }
 }

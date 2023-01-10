@@ -59,6 +59,8 @@
 		4B39A8FC28A5F62A00648B48 /* Whereis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B39A8FB28A5F62A00648B48 /* Whereis.swift */; };
 		4B39A8FD28A5F62A00648B48 /* Whereis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B39A8FB28A5F62A00648B48 /* Whereis.swift */; };
 		4B39A8FE28A5FF5000648B48 /* symbolicatecrash in Resources */ = {isa = PBXBuildFile; fileRef = 4B39A8DB28A4F43E00648B48 /* symbolicatecrash */; };
+		4BCA65042966B13600070398 /* ScriptCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCA65032966B13600070398 /* ScriptCommand.swift */; };
+		4BCA65062966B22500070398 /* Commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCA65052966B22500070398 /* Commands.swift */; };
 		65279D4B28A51FB90019CF41 /* PBXProjScript.rb in Resources */ = {isa = PBXBuildFile; fileRef = 4B39A8DA28A4F43E00648B48 /* PBXProjScript.rb */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +106,8 @@
 		4B39A8F728A4FF5500648B48 /* EmptyIOS */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = EmptyIOS; sourceTree = "<group>"; };
 		4B39A8F928A5000200648B48 /* test.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = test.sh; sourceTree = "<group>"; };
 		4B39A8FB28A5F62A00648B48 /* Whereis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Whereis.swift; sourceTree = "<group>"; };
+		4BCA65032966B13600070398 /* ScriptCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptCommand.swift; sourceTree = "<group>"; };
+		4BCA65052966B22500070398 /* Commands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commands.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +178,7 @@
 				4B39A8B328A4EE1F00648B48 /* ScriptType.swift */,
 				4B39A8B728A4EE6500648B48 /* ScriptError.swift */,
 				4B39A8B928A4EEB700648B48 /* ScriptPathCacher.swift */,
+				4BCA65032966B13600070398 /* ScriptCommand.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -181,6 +186,7 @@
 		4B39A8AF28A4ED9700648B48 /* Commands */ = {
 			isa = PBXGroup;
 			children = (
+				4BCA65052966B22500070398 /* Commands.swift */,
 				4B39A8CB28A4F19C00648B48 /* Git.swift */,
 				4B39A8E328A4F5CB00648B48 /* Pod.swift */,
 				4B39A8E628A4F5E300648B48 /* PlistBuddy.swift */,
@@ -351,6 +357,7 @@
 				4B39A8C628A4EF8100648B48 /* AppleHandler.swift in Sources */,
 				4B39A8D528A4F2F600648B48 /* Ruby.swift in Sources */,
 				4B39A8E128A4F5A200648B48 /* Symbolicatecrash.swift in Sources */,
+				4BCA65042966B13600070398 /* ScriptCommand.swift in Sources */,
 				4B39A8D928A4F36B00648B48 /* Defines.swift in Sources */,
 				4B39A8C128A4EF2800648B48 /* Executor.swift in Sources */,
 				4B39A8D228A4F25300648B48 /* Find.swift in Sources */,
@@ -358,6 +365,7 @@
 				4B39A8CA28A4EF9500648B48 /* UnknownHandler.swift in Sources */,
 				4B39A8E728A4F5E300648B48 /* PlistBuddy.swift in Sources */,
 				4B39A8BA28A4EEB700648B48 /* ScriptPathCacher.swift in Sources */,
+				4BCA65062966B22500070398 /* Commands.swift in Sources */,
 				4B39A8CC28A4F19C00648B48 /* Git.swift in Sources */,
 				4B39A8F528A4FE3100648B48 /* Dwarfdump.swift in Sources */,
 				4B39A8EA28A4F63300648B48 /* Xcodebuild.swift in Sources */,

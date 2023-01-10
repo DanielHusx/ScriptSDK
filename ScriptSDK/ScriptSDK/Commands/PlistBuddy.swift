@@ -91,7 +91,8 @@ extension Script {
     /// - Note: 优点：速度快；缺点：打印格式是JavaScript-object-literal-like格式，swift无法解析集合类型（Array, Dictionary）
     /// - Returns: Script
     public class func plistBuddy() -> Script {
-        Script(command: .plistBuddy, type: .apple(isAsAdministrator: false))
+        Script(.plistBuddy,
+               type: .apple(isAsAdministrator: false))
     }
     
     /// 支持PlistBuddyCURDCommand的命令合成

@@ -38,7 +38,7 @@ extension Script {
     
     /// /bin/sh命令
     public class func sh() -> Script {
-        Script(command: .sh,
+        Script(.sh,
                type: .process(isIgnoreOutput: false, environment: nil, input: nil))
     }
     

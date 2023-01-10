@@ -89,7 +89,7 @@ extension Script {
     
     /// dwarfdump构建基本命令
     public class func dwarfdump() -> Script {
-        Script(command: .dwarfdump,
+        Script(.dwarfdump,
                type: .apple(isAsAdministrator: false))
     }
     

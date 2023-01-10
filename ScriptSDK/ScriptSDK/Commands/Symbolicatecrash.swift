@@ -72,7 +72,7 @@ extension Script {
     ///    - environment: 环境变量，默认为["DEVELOPER_DIR": "/Applications/Xcode.app/Contents/Developer"]
     public class func symbolicatecrash(isIgnoreOutput: Bool = false,
                                        environment: [String: String]? = ["DEVELOPER_DIR": "/Applications/Xcode.app/Contents/Developer"]) -> Script {
-        Script(command: .symbolicatecrash,
+        Script(.symbolicatecrash,
                type: .process(isIgnoreOutput: isIgnoreOutput, environment: environment, input: nil))
     }
     

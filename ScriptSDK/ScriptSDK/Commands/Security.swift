@@ -180,7 +180,8 @@ extension Script {
     
     /// security基本命令
     public class func security() -> Script {
-        Script(command: .security, type: .apple(isAsAdministrator: false))
+        Script(.security,
+               type: .apple(isAsAdministrator: false))
     }
     
     /// security构建通用命令

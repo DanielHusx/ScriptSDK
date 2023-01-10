@@ -205,7 +205,7 @@ extension Script {
     /// xcodebuild基础命令
     /// - Returns: Script
     public class func xcodebuild() -> Script {
-        Script(command: .xcodebuild,
+        Script(.xcodebuild,
                type: .process(isIgnoreOutput: true, environment: nil, input: nil))
     }
     
